@@ -1,0 +1,6 @@
+es:
+  hello: "Hola"
+  logout: "Cerrar sesión"
+  login: "Iniciar sesión"
+  signup: "Registrarse"
+  welcome: "Bienvenido, %{email}"

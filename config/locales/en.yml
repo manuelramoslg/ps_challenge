@@ -28,4 +28,8 @@
 #       enabled: "ON"
 
 en:
-  hello: "Hello world"
+  hello: "Hello"
+  logout: "Logout"
+  login: "Login"
+  signup: "Sign up"
+  welcome: "Welcome, %{email}"
