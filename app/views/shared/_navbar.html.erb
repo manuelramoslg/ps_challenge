@@ -8,17 +8,17 @@
       <ul class="navbar-nav ms-auto">
         <% if user_signed_in? %>
           <li class="nav-item">
-            <a class="nav-link" href="#"><%= t('welcome', email: current_user.email) %></a>
+            <a class="nav-link" href="#"><%= t('home.welcome', email: current_user.email) %></a>
           </li>
           <li class="nav-item">
-            <%= button_to t('logout'), destroy_user_session_path, method: :delete, class: "btn btn-link" %>
+            <%= button_to t('home.logout'), destroy_user_session_path, method: :delete, class: "btn btn-link" %>
           </li>
         <% else %>
           <li class="nav-item">
-            <%= link_to t('login'), new_user_session_path, class: "nav-link" %>
+            <%= link_to t('home.login'), new_user_session_path, class: "nav-link" %>
           </li>
           <li class="nav-item">
-            <%= link_to t('signup'), new_user_registration_path, class: "nav-link" %>
+            <%= link_to t('home.signup'), new_user_registration_path, class: "nav-link" %>
           </li>
         <% end %>
       </ul>
