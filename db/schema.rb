@@ -10,9 +10,50 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2024_09_08_172840) do
+ActiveRecord::Schema[7.2].define(version: 2024_09_10_165253) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "answers", force: :cascade do |t|
+    t.text "content", null: false
+    t.boolean "is_correct", default: false
+    t.bigint "question_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["question_id"], name: "index_answers_on_question_id"
+  end
+
+  create_table "exam_attempts", force: :cascade do |t|
+    t.datetime "start_time", null: false
+    t.datetime "end_time"
+    t.float "score"
+    t.bigint "user_id", null: false
+    t.bigint "exam_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["exam_id"], name: "index_exam_attempts_on_exam_id"
+    t.index ["user_id"], name: "index_exam_attempts_on_user_id"
+  end
+
+  create_table "exams", force: :cascade do |t|
+    t.string "title", null: false
+    t.text "description"
+    t.datetime "start_date", null: false
+    t.datetime "end_date", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "questions", force: :cascade do |t|
+    t.text "content", null: false
+    t.integer "question_type", null: false
+    t.boolean "is_scorable", default: true
+    t.integer "points", default: 0
+    t.bigint "exam_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["exam_id"], name: "index_questions_on_exam_id"
+  end
 
   create_table "roles", force: :cascade do |t|
     t.string "name"
@@ -22,6 +63,18 @@ ActiveRecord::Schema[7.2].define(version: 2024_09_08_172840) do
     t.datetime "updated_at", null: false
     t.index ["name", "resource_type", "resource_id"], name: "index_roles_on_name_and_resource_type_and_resource_id"
     t.index ["resource_type", "resource_id"], name: "index_roles_on_resource"
+  end
+
+  create_table "user_answers", force: :cascade do |t|
+    t.text "content"
+    t.bigint "exam_attempt_id", null: false
+    t.bigint "question_id", null: false
+    t.bigint "answer_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["answer_id"], name: "index_user_answers_on_answer_id"
+    t.index ["exam_attempt_id"], name: "index_user_answers_on_exam_attempt_id"
+    t.index ["question_id"], name: "index_user_answers_on_question_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -43,4 +96,12 @@ ActiveRecord::Schema[7.2].define(version: 2024_09_08_172840) do
     t.index ["user_id", "role_id"], name: "index_users_roles_on_user_id_and_role_id"
     t.index ["user_id"], name: "index_users_roles_on_user_id"
   end
+
+  add_foreign_key "answers", "questions"
+  add_foreign_key "exam_attempts", "exams"
+  add_foreign_key "exam_attempts", "users"
+  add_foreign_key "questions", "exams"
+  add_foreign_key "user_answers", "answers"
+  add_foreign_key "user_answers", "exam_attempts"
+  add_foreign_key "user_answers", "questions"
 end
