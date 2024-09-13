@@ -10,9 +10,37 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2024_09_08_172840) do
+ActiveRecord::Schema[7.2].define(version: 2024_09_12_202100) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "answers", force: :cascade do |t|
+    t.bigint "question_id", null: false
+    t.text "content", null: false
+    t.boolean "correct", default: false, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["question_id"], name: "index_answers_on_question_id"
+  end
+
+  create_table "exams", force: :cascade do |t|
+    t.string "title", null: false
+    t.datetime "start_date", null: false
+    t.datetime "end_date", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "questions", force: :cascade do |t|
+    t.bigint "exam_id", null: false
+    t.text "content", null: false
+    t.integer "question_type", default: 0, null: false
+    t.integer "points"
+    t.boolean "evaluable", default: true
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["exam_id"], name: "index_questions_on_exam_id"
+  end
 
   create_table "roles", force: :cascade do |t|
     t.string "name"
@@ -43,4 +71,7 @@ ActiveRecord::Schema[7.2].define(version: 2024_09_08_172840) do
     t.index ["user_id", "role_id"], name: "index_users_roles_on_user_id_and_role_id"
     t.index ["user_id"], name: "index_users_roles_on_user_id"
   end
+
+  add_foreign_key "answers", "questions"
+  add_foreign_key "questions", "exams"
 end
