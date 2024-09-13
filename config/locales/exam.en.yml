@@ -2,3 +2,7 @@ en:
   exam:
     errors:
       end_date_before_start_date: "must be after the start date"
+  exams:
+    destroy:
+      success: "Exam was successfully deleted."
+    not_found: "Exam not found."
