@@ -1,0 +1,27 @@
+<h1><%= @exam.title %></h1>
+<p>Start Date: <%= @exam.start_date %></p>
+<p>End Date: <%= @exam.end_date %></p>
+
+<% @exam.questions.each_with_index do |question, index| %>
+  <div>
+    <h3>Question <%= index + 1 %></h3>
+    <p><%= question.content %></p>
+    <p>Type: <%= question.question_type %></p>
+    <p>Points: <%= question.points %></p>
+    <p>Evaluable: <%= question.evaluable ? 'Yes' : 'No' %></p>
+
+    <% if question.answers.any? %>
+      <h4>Answers</h4>
+      <ul>
+        <% question.answers.each do |answer| %>
+          <li>
+            <%= answer.content %> 
+            (<%= answer.correct ? 'Correct' : 'Incorrect' %>)
+          </li>
+        <% end %>
+      </ul>
+    <% end %>
+  </div>
+<% end %>
+
+<%= link_to 'Back to Exams', exams_path %>
