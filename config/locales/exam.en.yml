@@ -1,0 +1,4 @@
+en:
+  exam:
+    errors:
+      end_date_before_start_date: "must be after the start date"
