@@ -1,31 +1,31 @@
 <div class="container mt-4">
   <div class="d-flex justify-content-between align-items-center mb-4">
-    <h1>Exams</h1>
-    <%= link_to 'New Exam', new_exam_path, class: 'btn btn-primary' %>
+    <h1><%= t('exams.index.title') %></h1>
+    <%= link_to t('exams.index.new_exam'), new_exam_path, class: 'btn btn-primary' %>
   </div>
 
   <div class="table-responsive">
     <table class="table table-striped table-hover">
       <thead class="table-dark">
         <tr>
-          <th>Title</th>
-          <th>Start Date</th>
-          <th>End Date</th>
-          <th>Actions</th>
+          <th><%= t('exams.attributes.title') %></th>
+          <th><%= t('exams.attributes.start_date') %></th>
+          <th><%= t('exams.attributes.end_date') %></th>
+          <th><%= t('exams.index.actions') %></th>
         </tr>
       </thead>
       <tbody>
         <% @exams.each do |exam| %>
           <tr>
             <td><%= exam.title %></td>
-            <td><%= exam.start_date.strftime('%Y-%m-%d %H:%M') %></td>
-            <td><%= exam.end_date.strftime('%Y-%m-%d %H:%M') %></td>
+            <td><%= l(exam.start_date, format: :short) %></td>
+            <td><%= l(exam.end_date, format: :short) %></td>
             <td>
               <div class="d-flex gap-2">
-                <%= button_to 'Show', exam_path(exam), method: :get, class: 'btn btn-sm btn-info' %>
-                <%= button_to 'Delete', exam_path(exam),
+                <%= button_to t('exams.index.show'), exam_path(exam), method: :get, class: 'btn btn-sm btn-info' %>
+                <%= button_to t('exams.index.delete'), exam_path(exam),
                  method: :delete,
-                 form: { data: { turbo_confirm: 'Are you sure?' } },
+                 form: { data: { turbo_confirm: t('exams.index.confirm_delete') } },
                  class: 'btn btn-sm btn-danger' %>
               </div>
             </td>

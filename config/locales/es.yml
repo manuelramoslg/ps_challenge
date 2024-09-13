@@ -1,4 +1,19 @@
 es:
+  exams:
+    index:
+      title: "Exámenes"
+      new_exam: "Nuevo Examen"
+      actions: "Acciones"
+      show: "Ver"
+      delete: "Eliminar"
+      confirm_delete: "¿Estás seguro?"
+    attributes:
+      title: "Título"
+      start_date: "Fecha de Inicio"
+      end_date: "Fecha de Fin"
+  time:
+    formats:
+      short: "%d-%m-%Y %H:%M"
   home: 
     hello: "Hola"
     logout: "Cerrar sesión"

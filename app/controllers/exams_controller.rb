@@ -1,5 +1,6 @@
 class ExamsController < ApplicationController
   before_action :set_exam, only: [ :show, :edit, :update, :destroy ]
+
   def index
     @exams = Exam.all
     respond_to do |format|
@@ -47,7 +48,7 @@ class ExamsController < ApplicationController
   def destroy
     @exam.destroy
     respond_to do |format|
-      format.html { redirect_to exams_url, notice: "Exam was successfully deleted." }
+      format.html { redirect_to exams_url, notice: t("exams.destroy.success") }
       format.json { head :no_content }
     end
   end
@@ -64,5 +65,6 @@ class ExamsController < ApplicationController
 
   def set_exam
     @exam = Exam.find_by(id: params[:id])
+    render json: { error: t("exams.not_found") }, status: :not_found unless @exam
   end
 end

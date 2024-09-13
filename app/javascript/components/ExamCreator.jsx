@@ -85,8 +85,6 @@ export default function ExamCreator() {
             if (j === answerIndex) {
               return { ...a, ...updates }
             }
-            // Si es pregunta de selección simple y se está marcando esta respuesta como correcta,
-            // asegurarse de que las otras respuestas se marquen como incorrectas
             if (q.question_type === 'single_choice' && updates.correct) {
               return { ...a, correct: false }
             }

@@ -4,24 +4,23 @@
 
 <% @exam.questions.each_with_index do |question, index| %>
   <div>
-    <h3>Question <%= index + 1 %></h3>
+    <h3><%= t('exams.show.question_number', number: index + 1) %></h3>
     <p><%= question.content %></p>
-    <p>Type: <%= question.question_type %></p>
-    <p>Points: <%= question.points %></p>
-    <p>Evaluable: <%= question.evaluable ? 'Yes' : 'No' %></p>
+    <p><%= t('exams.show.type') %>: <%= t("exams.question_types.#{question.question_type}") %></p>
+    <p><%= t('exams.show.points') %>: <%= question.points %></p>
+    <p><%= t('exams.show.evaluable') %>: <%= question.evaluable ? t('common.yes') : t('common.no') %></p>
 
     <% if question.answers.any? %>
-      <h4>Answers</h4>
+      <h4><%= t('exams.show.answers') %></h4>
       <ul>
         <% question.answers.each do |answer| %>
           <li>
             <%= answer.content %> 
-            (<%= answer.correct ? 'Correct' : 'Incorrect' %>)
+            (<%= answer.correct ? t('exams.show.correct') : t('exams.show.incorrect') %>)
           </li>
         <% end %>
       </ul>
     <% end %>
   </div>
 <% end %>
-
-<%= link_to 'Back to Exams', exams_path %>
+<%= link_to t('exams.show.back_to_exams'), exams_path %>
