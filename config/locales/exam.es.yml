@@ -6,3 +6,23 @@ es:
     destroy:
       success: "El examen fue eliminado exitosamente."
     not_found: "Examen no encontrado."
+    show:
+      title: "Título"
+      start_date: "Fecha de inicio"
+      end_date: "Fecha de finalización"
+      type: "Tipo"
+      points: "Puntos"
+      evaluable: "Evaluable"
+      answers: "Respuestas"
+      correct: "Correcta"
+      incorrect: "Incorrecta"
+      back_to_exams: "Volver a exámenes"
+    question_types:
+      multiple_choice: "Opción múltiple"
+      true_false: "Verdadero/Falso"
+      short_answer: "Respuesta corta"
+      essay: "Ensayo"
+      free_text: "Texto libre"
+    common:
+      yes: "Sí"
+      no: "No"

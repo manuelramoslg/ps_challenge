@@ -11,15 +11,25 @@ es:
       title: "Título"
       start_date: "Fecha de Inicio"
       end_date: "Fecha de Fin"
-  time:
-    formats:
-      short: "%d-%m-%Y %H:%M"
   home: 
     hello: "Hola"
     logout: "Cerrar sesión"
     login: "Iniciar sesión"
     signup: "Registrarse"
     welcome: "Bienvenido, %{email}"
+  common:
+    yes: "Sí"
+    no: "No"
+  date:
+    month_names: [~, Enero, Febrero, Marzo, Abril, Mayo, Junio, Julio, Agosto, Septiembre, Octubre, Noviembre, Diciembre]
+    abbr_month_names: [~, Ene, Feb, Mar, Abr, May, Jun, Jul, Ago, Sep, Oct, Nov, Dic]
+    day_names: [Domingo, Lunes, Martes, Miércoles, Jueves, Viernes, Sábado]
+    abbr_day_names: [Dom, Lun, Mar, Mié, Jue, Vie, Sáb]
+  time:
+    formats:
+      short: "%d-%m-%Y %H:%M"
+      long: "%d de %B de %Y %H:%M"
+      default: "%a, %d %b %Y %H:%M:%S %z"
   activerecord:
     errors:
       messages:

@@ -1,5 +1,7 @@
 class Exam < ApplicationRecord
   has_many :questions, dependent: :destroy
+  has_many :user_exams
+  has_many :users, through: :user_exams
   accepts_nested_attributes_for :questions, allow_destroy: true
 
   validates :title, presence: true

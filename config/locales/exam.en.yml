@@ -4,5 +4,25 @@ en:
       end_date_before_start_date: "must be after the start date"
   exams:
     destroy:
-      success: "Exam was successfully deleted."
+      success: "The exam was successfully deleted."
     not_found: "Exam not found."
+    show:
+      title: "Title"
+      start_date: "Start Date"
+      end_date: "End Date"
+      type: "Type"
+      points: "Points"
+      evaluable: "Evaluable"
+      answers: "Answers"
+      correct: "Correct"
+      incorrect: "Incorrect"
+      back_to_exams: "Back to Exams"
+    question_types:
+      multiple_choice: "Multiple Choice"
+      true_false: "True/False"
+      short_answer: "Short Answer"
+      essay: "Essay"
+      free_text: "Free Text"
+    common:
+      yes: "Yes"
+      no: "No"
