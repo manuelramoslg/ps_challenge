@@ -1,8 +1,11 @@
+# spec/models/exam_spec.rb
 require 'rails_helper'
 
 RSpec.describe Exam, type: :model do
   describe 'associations' do
     it { should have_many(:questions).dependent(:destroy) }
+    it { should have_many(:user_exams) }
+    it { should have_many(:users).through(:user_exams) }
     it { should accept_nested_attributes_for(:questions).allow_destroy(true) }
   end
 
@@ -23,6 +26,11 @@ RSpec.describe Exam, type: :model do
         exam = build(:exam, start_date: Date.today, end_date: Date.yesterday)
         expect(exam).to be_invalid
         expect(exam.errors[:end_date]).to include(I18n.t('exam.errors.end_date_before_start_date'))
+      end
+
+      it 'is valid when start_date and end_date are the same' do
+        exam = build(:exam, start_date: Date.today, end_date: Date.today)
+        expect(exam).to be_valid
       end
     end
   end
@@ -46,6 +54,11 @@ RSpec.describe Exam, type: :model do
   describe 'factory' do
     it 'has a valid factory' do
       expect(build(:exam)).to be_valid
+    end
+
+    it 'creates an exam with associated questions' do
+      exam = create(:exam, :with_questions, question_count: 3)
+      expect(exam.questions.count).to eq(3)
     end
   end
 end

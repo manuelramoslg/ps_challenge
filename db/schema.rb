@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2024_09_12_202100) do
+ActiveRecord::Schema[7.2].define(version: 2024_09_13_204625) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -52,6 +52,29 @@ ActiveRecord::Schema[7.2].define(version: 2024_09_12_202100) do
     t.index ["resource_type", "resource_id"], name: "index_roles_on_resource"
   end
 
+  create_table "user_answers", force: :cascade do |t|
+    t.bigint "user_exam_id", null: false
+    t.bigint "question_id", null: false
+    t.text "content"
+    t.boolean "is_correct"
+    t.integer "score"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["question_id"], name: "index_user_answers_on_question_id"
+    t.index ["user_exam_id"], name: "index_user_answers_on_user_exam_id"
+  end
+
+  create_table "user_exams", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "exam_id", null: false
+    t.integer "total_score"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["exam_id"], name: "index_user_exams_on_exam_id"
+    t.index ["user_id", "exam_id"], name: "index_user_exams_on_user_id_and_exam_id", unique: true
+    t.index ["user_id"], name: "index_user_exams_on_user_id"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -74,4 +97,8 @@ ActiveRecord::Schema[7.2].define(version: 2024_09_12_202100) do
 
   add_foreign_key "answers", "questions"
   add_foreign_key "questions", "exams"
+  add_foreign_key "user_answers", "questions"
+  add_foreign_key "user_answers", "user_exams"
+  add_foreign_key "user_exams", "exams"
+  add_foreign_key "user_exams", "users"
 end
