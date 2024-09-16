@@ -1,26 +1,64 @@
-<h1><%= @exam.title %></h1>
-<p>Start Date: <%= @exam.start_date %></p>
-<p>End Date: <%= @exam.end_date %></p>
+<div class="container mt-5">
+  <div class="card shadow-sm mb-5">
+    <div class="card-header bg-primary text-white">
+      <h1 class="h2 mb-0"><%= @exam.title %></h1>
+    </div>
+    <div class="card-body">
+      <div class="row mb-4">
+        <div class="col-md-6">
+          <p class="mb-2"><strong><%= t('exams.show.start_date') %>:</strong> <%= l(@exam.start_date, format: :long) %></p>
+        </div>
+        <div class="col-md-6">
+          <p class="mb-2"><strong><%= t('exams.show.end_date') %>:</strong> <%= l(@exam.end_date, format: :long) %></p>
+        </div>
+      </div>
 
-<% @exam.questions.each_with_index do |question, index| %>
-  <div>
-    <h3><%= t('exams.show.question_number', number: index + 1) %></h3>
-    <p><%= question.content %></p>
-    <p><%= t('exams.show.type') %>: <%= t("exams.question_types.#{question.question_type}") %></p>
-    <p><%= t('exams.show.points') %>: <%= question.points %></p>
-    <p><%= t('exams.show.evaluable') %>: <%= question.evaluable ? t('common.yes') : t('common.no') %></p>
+      <% @exam.questions.each_with_index do |question, index| %>
+        <div class="card mb-4">
+          <div class="card-header bg-light">
+            <h3 class="h5 mb-0">
+              <%= t('exams.show.question_number', number: index + 1) %>
+            </h3>
+          </div>
+          <div class="card-body">
+            <p class="card-text mb-3"><%= question.content %></p>
+            <div class="row mb-3">
+              <div class="col-md-4">
+                <p class="mb-1"><strong><%= t('exams.show.type') %>:</strong> <%= t("exams.question_types.#{question.question_type}") %></p>
+              </div>
+              <div class="col-md-4">
+                <p class="mb-1"><strong><%= t('exams.show.points') %>:</strong> <%= question.points %></p>
+              </div>
+              <div class="col-md-4">
+                <p class="mb-1">
+                  <strong><%= t('exams.show.evaluable') %>:</strong>
+                  <span class="badge <%= question.evaluable ? 'bg-success' : 'bg-danger' %>">
+                    <%= question.evaluable ? t('common.yes') : t('common.no') %>
+                  </span>
+                </p>
+              </div>
+            </div>
 
-    <% if question.answers.any? %>
-      <h4><%= t('exams.show.answers') %></h4>
-      <ul>
-        <% question.answers.each do |answer| %>
-          <li>
-            <%= answer.content %> 
-            (<%= answer.correct ? t('exams.show.correct') : t('exams.show.incorrect') %>)
-          </li>
-        <% end %>
-      </ul>
-    <% end %>
+            <% if question.answers.any? %>
+              <h4 class="h6 mb-3"><%= t('exams.show.answers') %></h4>
+              <ul class="list-group">
+                <% question.answers.each do |answer| %>
+                  <li class="list-group-item d-flex justify-content-between align-items-center">
+                    <%= answer.content %>
+                    <span class="badge <%= answer.correct ? 'bg-success' : 'bg-danger' %>">
+                      <%= answer.correct ? t('exams.show.correct') : t('exams.show.incorrect') %>
+                    </span>
+                  </li>
+                <% end %>
+              </ul>
+            <% end %>
+          </div>
+        </div>
+      <% end %>
+    </div>
   </div>
-<% end %>
-<%= link_to t('exams.show.back_to_exams'), exams_path %>
+
+  <div class="text-center mb-5">
+    <%= link_to t('exams.show.back_to_exams'), exams_path, class: 'btn btn-primary' %>
+  </div>
+</div>
