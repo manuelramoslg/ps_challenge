@@ -18,14 +18,32 @@
     <%= javascript_include_tag "application", "data-turbo-track": "reload", type: "module" %>
   </head>
 
-  <body>
+  <body class="d-flex flex-column h-100">
     <%= render 'shared/navbar' %>
-    <p class="notice"><%= notice %></p>
-    <p class="alert"><%= alert %></p>
+    
+    <main class="flex-shrink-0">
+      <div class="container">
+        <% if notice %>
+          <div class="alert alert-success alert-dismissible fade show" role="alert">
+            <%= notice %>
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+          </div>
+        <% end %>
 
-    <div class="container">
-     
-      <%= yield %>
-    </div>
+        <% if alert %>
+          <div class="alert alert-danger alert-dismissible fade show" role="alert">
+            <%= alert %>
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+          </div>
+        <% end %>
+        <%= yield %>
+      </div>
+    </main>
+    
+    <footer class="footer mt-auto py-3 bg-light">
+      <div class="container">
+        <%= render 'shared/footer' %>
+      </div>
+    </footer>
   </body>
 </html>

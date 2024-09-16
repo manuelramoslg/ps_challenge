@@ -6,6 +6,7 @@ es:
       actions: "Acciones"
       show: "Ver"
       delete: "Eliminar"
+      take_exam: "Tomar Examen"
       confirm_delete: "¿Estás seguro?"
     attributes:
       title: "Título"
@@ -17,6 +18,7 @@ es:
     login: "Iniciar sesión"
     signup: "Registrarse"
     welcome: "Bienvenido, %{email}"
+    go: "Vamos"
   common:
     yes: "Sí"
     no: "No"
