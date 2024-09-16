@@ -8,11 +8,33 @@ es:
       delete: "Eliminar"
       take_exam: "Tomar Examen"
       confirm_delete: "¿Estás seguro?"
+      submit: "Enviar"
     attributes:
       title: "Título"
       start_date: "Fecha de Inicio"
       end_date: "Fecha de Fin"
-  home: 
+  home:
+    title: "Power Soluction Challenge"
+    hero:
+      title: "Domina tus exámenes con confianza"
+      subtitle: "Prepárate, practica y destaca en tus exámenes con nuestra plataforma en línea integral."
+      show_exam_list: "Mostrar lista de exámenes"
+    features:
+      create:
+        title: "Crea tus examenes"
+        description: "Crea exámenes personalizados fácilmente."
+      share:
+        title: "Comparte exámenes online"
+        description: "Envío seguro y rápido. Llega a todos tus alumnos. Facilita la evaluación a distancia."
+      results:
+        title: "Resultados vivos"
+        description: "Analiza en tiempo real. Visualiza tendencias. Toma decisiones informadas. Mejora continua."
+    cta:
+      title: "Comienza tu preparación para exámenes hoy"
+      subtitle: "Únete a miles de estudiantes exitosos que han mejorado sus calificaciones con nuestra plataforma."
+      email_placeholder: "Ingresa tu correo electrónico"
+      email_label: "Correo electrónico"
+      submit: "Registrarse"
     hello: "Hola"
     logout: "Cerrar sesión"
     login: "Iniciar sesión"

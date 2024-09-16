@@ -27,6 +27,11 @@ RSpec.describe User, type: :model do
       manager = create(:user, :manager)
       expect(manager.has_role?(:manager)).to be true
     end
+
+    it 'creates a participant user' do
+      participant = create(:user, :participant)
+      expect(participant.has_role?(:participant)).to be true
+    end
   end
 
   describe 'exams' do
