@@ -97,17 +97,17 @@ RSpec.describe UserExam, type: :model do
   end
 
   describe 'scopes' do
-    let!(:completed_exam) { create(:user_exam, total_score: 10) }
-    let!(:incomplete_exam) { create(:user_exam, total_score: nil) }
+    let!(:completed_exam) { create(:user_exam, status: :completed, total_score: 10) }
+    let!(:in_progress_exam) { create(:user_exam, status: :in_progress, total_score: nil) }
 
     it 'returns completed exams' do
       expect(UserExam.completed).to include(completed_exam)
-      expect(UserExam.completed).not_to include(incomplete_exam)
+      expect(UserExam.completed).not_to include(in_progress_exam)
     end
 
-    it 'returns incomplete exams' do
-      expect(UserExam.incomplete).to include(incomplete_exam)
-      expect(UserExam.incomplete).not_to include(completed_exam)
+    it 'returns in_progress exams' do
+      expect(UserExam.in_progress).to include(in_progress_exam)
+      expect(UserExam.in_progress).not_to include(completed_exam)
     end
   end
 end
