@@ -1,0 +1,28 @@
+en:
+  exam_attempts:
+    start:
+      success: "Exam started successfully."
+    show:
+      already_completed: "You have already completed this exam."
+      question_number: "Question %{number}"
+      submit_exam: "Submit Exam"
+    submit:
+      success: "Exam submitted successfully."
+      invalid: "Invalid exam submission."
+    result:
+      title: "Exam Result"
+      total_score: "Total Score"
+      score_aria_label: "Your score is %{score}"
+      question_number: "Question %{number}"
+      your_answer: "Your Answer"
+      your_selections: "Your Selections"
+      correct_answer: "Correct Answer"
+      result: "Result"
+      correct: "Correct"
+      incorrect: "Incorrect"
+      back_to_exams: "Back to Exams"
+      not_available: "Exam result not available."
+    already_completed: "You have already completed this exam."
+  questions:
+    types:
+      free_text: "Free text question"

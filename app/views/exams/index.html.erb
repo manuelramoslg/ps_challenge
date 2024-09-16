@@ -27,6 +27,7 @@
                  method: :delete,
                  form: { data: { turbo_confirm: t('exams.index.confirm_delete') } },
                  class: 'btn btn-sm btn-danger' %>
+                 <%= button_to "Take Exam", start_exam_attempt_path(exam), method: :post, class: 'btn btn-sm btn-info' %>
               </div>
             </td>
           </tr>

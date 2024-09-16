@@ -1,0 +1,42 @@
+<div class="container mt-4">
+  <h1 class="mb-4"><%= @exam.title %></h1>
+
+  <%= form_tag submit_exam_attempt_path(@exam), method: :post do %>
+    <% @questions.each_with_index do |question, index| %>
+      <div class="card mb-4">
+        <div class="card-header">
+          <h3 class="mb-0"><%= t('.question_number', number: index + 1) %></h3>
+        </div>
+        <div class="card-body">
+          <p class="card-text"><%= question.content %></p>
+          <% case question.question_type %>
+          <% when 'free_text' %>
+            <%= text_area_tag "answers[#{question.id}][content]", nil, class: 'form-control', rows: 4 %>
+          <% when 'multiple_choice' %>
+            <div class="form-group">
+              <% question.answers.each do |answer| %>
+                <div class="form-check">
+                  <%= check_box_tag "answers[#{question.id}][content][]", answer.id, false, class: 'form-check-input' %>
+                  <%= label_tag "answers_#{question.id}_content_#{answer.id}", answer.content, class: 'form-check-label' %>
+                </div>
+              <% end %>
+            </div>
+          <% when 'single_choice' %>
+            <div class="form-group">
+              <% question.answers.each do |answer| %>
+                <div class="form-check">
+                  <%= radio_button_tag "answers[#{question.id}][content]", answer.id, false, class: 'form-check-input' %>
+                  <%= label_tag "answers_#{question.id}_content_#{answer.id}", answer.content, class: 'form-check-label' %>
+                </div>
+              <% end %>
+            </div>
+          <% end %>
+        </div>
+      </div>
+    <% end %>
+
+    <div class="text-center mb-4">
+      <%= submit_tag t('.submit_exam'), class: 'btn btn-primary btn-lg' %>
+    </div>
+  <% end %>
+</div>

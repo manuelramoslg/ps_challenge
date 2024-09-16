@@ -1,0 +1,29 @@
+es:
+  exam_attempts:
+    start:
+      success: "Examen iniciado con éxito."
+    show:
+      already_completed: "Ya has completado este examen."
+      question_number: "Pregunta %{number}"
+      submit_exam: "Enviar Examen"
+    submit:
+      success: "Examen enviado con éxito."
+      invalid: "Envío de examen inválido."
+    result:
+      title: "Resultado del Examen"
+      total_score: "Puntuación Total"
+      score_aria_label: "Tu puntuación es %{score}"
+      question_number: "Pregunta %{number}"
+      your_answer: "Tu Respuesta"
+      your_selections: "Tus Selecciones"
+      correct_answer: "Respuesta Correcta"
+      result: "Resultado"
+      correct: "Correcto"
+      incorrect: "Incorrecto"
+      back_to_exams: "Volver a Exámenes"
+      not_available: "Resultado del examen no disponible."
+    already_completed: "Ya has completado este examen."
+  questions:
+    types:
+      free_text: "Pregunta de texto libre"
+
