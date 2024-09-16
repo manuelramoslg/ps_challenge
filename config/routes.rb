@@ -10,11 +10,11 @@ Rails.application.routes.draw do
   # Defines the root path route ("/")
   root "home#index"
   resources :exams do
-    resource :attempt, only: [:show], controller: 'exam_attempts' do
+    resource :attempt, only: [ :show ], controller: "exam_attempts" do
       member do
-        post 'start'
-        post 'submit'
-        get 'result'
+        post "start"
+        post "submit"
+        get "result"
       end
     end
   end
