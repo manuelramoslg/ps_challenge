@@ -3,11 +3,13 @@
     <div class="col">
       <h1 class="display-4"><%= t('exams.index.title') %></h1>
     </div>
-    <div class="col-auto">
-      <%= link_to new_exam_path, class: 'btn btn-primary btn-lg' do %>
-        <i class="bi bi-plus-circle me-2"></i><%= t('exams.index.new_exam') %>
-      <% end %>
-    </div>
+    <% if current_user.has_role?(:admin) || current_user.has_role?(:manager)%>
+      <div class="col-auto">
+        <%= link_to new_exam_path, class: 'btn btn-primary btn-lg' do %>
+          <i class="bi bi-plus-circle me-2"></i><%= t('exams.index.new_exam') %>
+        <% end %>
+      </div>
+    <% end %>
   </div>
 
   <div class="card shadow-sm">
@@ -30,20 +32,22 @@
                 <td><%= l(exam.end_date, format: :short) %></td>
                 <td>
                   <div class="d-flex justify-content-center gap-2">
-                    <%= link_to exam_path(exam), class: 'btn btn-outline-primary btn-sm', title: t('exams.index.actions.show') do %>
-                      <i class="bi bi-eye"></i>
-                    <% end %>
-                    <%= button_to exam_path(exam), method: :delete, form: { data: { turbo_confirm: t('exams.index.confirm_delete') } }, class: 'btn btn-outline-danger btn-sm', title: t('exams.index.actions.delete') do %>
-                      <i class="bi bi-trash"></i>
+                    <% if current_user.has_role?(:admin) || current_user.has_role?(:manager)%>
+                      <%= link_to exam_path(exam), class: 'btn btn-outline-primary btn-sm', title: t('exams.index.actions.show') do %>
+                        <i class="bi bi-eye"></i>
+                      <% end %>
+                      <%= button_to exam_path(exam), method: :delete, form: { data: { turbo_confirm: t('exams.index.confirm_delete') } }, class: 'btn btn-outline-danger btn-sm', title: t('exams.index.actions.delete') do %>
+                        <i class="bi bi-trash"></i>
+                      <% end %>
+                      <button class="btn btn-info btn-sm" data-bs-toggle="modal" data-bs-target="#assignExamModal<%= exam.id %>">
+                        <i class="bi bi-person-plus"></i> <%= t('exams.index.actions.assign') %>
+                      </button>
                     <% end %>
                     <% if current_user.has_role?(:participant, exam) %>
                       <%= button_to start_exam_attempt_path(exam), method: :post, class: 'btn btn-success btn-sm', title: t('exams.index.actions.take_exam') do %>
                         <i class="bi bi-play-fill"></i> <%= t('exams.index.actions.take_exam') %>
                       <% end %>
                     <% end %>
-                    <button class="btn btn-info btn-sm" data-bs-toggle="modal" data-bs-target="#assignExamModal<%= exam.id %>">
-                      <i class="bi bi-person-plus"></i> <%= t('exams.index.actions.assign') %>
-                    </button>
                   </div>
                 </td>
               </tr>

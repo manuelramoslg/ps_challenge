@@ -1,9 +1,14 @@
 class ExamsController < ApplicationController
-  before_action :authenticate_user!
   before_action :set_exam, only: [ :show, :edit, :update, :destroy ]
+  before_action :authenticate_user!
+  before_action :authorize_admin_or_manager, except: [ :index ]
 
   def index
-    @exams = Exam.all
+    if current_user.has_role?(:admin) || current_user.has_role?(:manager)
+      @exams = Exam.all
+    else
+      @exams = Exam.where(id: current_user.roles.where(resource_type: "Exam").map(&:resource_id))
+    end
     respond_to do |format|
       format.html
       format.json { render json: @exams }
@@ -67,5 +72,12 @@ class ExamsController < ApplicationController
   def set_exam
     @exam = Exam.find_by(id: params[:id])
     render json: { error: t("exams.not_found") }, status: :not_found unless @exam
+  end
+
+  def authorize_admin_or_manager
+    unless current_user.has_any_role?(:admin, :manager)
+      flash[:alert] = "You don't have permission to perform this action."
+      redirect_to root_path
+    end
   end
 end
