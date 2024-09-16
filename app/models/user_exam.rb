@@ -1,4 +1,3 @@
-# app/models/user_exam.rb
 class UserExam < ApplicationRecord
   belongs_to :user
   belongs_to :exam
@@ -8,9 +7,12 @@ class UserExam < ApplicationRecord
 
   validates :user_id, uniqueness: { scope: :exam_id, message: "has already taken this exam" }
   validates :total_score, numericality: { greater_than_or_equal_to: 0 }, allow_nil: true
+  validates :status, presence: true
 
-  scope :completed, -> { where.not(total_score: nil) }
-  scope :incomplete, -> { where(total_score: nil) }
+  enum status: { in_progress: 0, completed: 1 }
+
+  scope :completed, -> { where(status: :completed) }
+  scope :in_progress, -> { where(status: :in_progress) }
 
   def calculate_score
     total_points = 0
@@ -18,7 +20,7 @@ class UserExam < ApplicationRecord
       question = user_answer.question
       case question.question_type
       when "free_text"
-        # Do something for free text questions
+        # TODO Do something for free text questions
       when "multiple_choice"
         correct_answers = question.answers.where(correct: true).pluck(:id).map(&:to_s)
         user_answers = JSON.parse(user_answer.content).sort
@@ -31,7 +33,7 @@ class UserExam < ApplicationRecord
         end
       end
     end
-    update(total_score: total_points)
+    update(total_score: total_points, status: :completed)
     total_points
   end
 end

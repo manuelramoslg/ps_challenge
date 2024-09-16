@@ -9,5 +9,13 @@ Rails.application.routes.draw do
   get "manifest" => "rails/pwa#manifest", as: :pwa_manifest
   # Defines the root path route ("/")
   root "home#index"
-  resources :exams
+  resources :exams do
+    resource :attempt, only: [:show], controller: 'exam_attempts' do
+      member do
+        post 'start'
+        post 'submit'
+        get 'result'
+      end
+    end
+  end
 end

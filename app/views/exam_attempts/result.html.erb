@@ -1,0 +1,57 @@
+<div class="container mt-5">
+  <div class="row justify-content-center">
+    <div class="col-md-8">
+      <div class="card">
+        <div class="card-header bg-primary text-white">
+          <h1 class="h2 mb-0"><%= t('.title') %></h1>
+        </div>
+        <div class="card-body">
+          <h2 class="h3 text-center mb-4">
+            <%= t('.total_score') %>: 
+            <span class="badge bg-success" aria-label="<%= t('.score_aria_label', score: @user_exam.total_score) %>">
+              <%= @user_exam.total_score %>
+            </span>
+          </h2>
+          
+          <% @user_exam.user_answers.includes(:question).each_with_index do |user_answer, index| %>
+            <div class="card mb-4 <%= user_answer.correct? ? 'border-success' : 'border-danger' %>">
+              <div class="card-header <%= user_answer.correct? ? 'bg-success' : 'bg-danger' %> text-white">
+                <h3 class="h4 mb-0"><%= t('.question_number', number: index + 1) %></h3>
+              </div>
+              <div class="card-body">
+                <h4 class="h5 card-title"><%= user_answer.question.content %></h4>
+                <p class="card-text"><strong><%= t('.your_answer') %>:</strong> <%= user_answer.content %></p>
+                
+                <% if user_answer.question.question_type == 'multiple_choice' %>
+                  <p class="card-text"><strong><%= t('.your_selections') %>:</strong> <%= JSON.parse(user_answer.content).join(", ") %></p>
+                <% end %>
+                
+                <p class="mt-2"><strong><%= t('.correct_answer') %>:</strong> 
+                  <% case user_answer.question.question_type %>
+                  <% when 'free_text' %>
+                    N/A (<%= t('questions.types.free_text') %>)
+                  <% when 'multiple_choice' %>
+                    <%= user_answer.question.answers.where(correct: true).pluck(:content).join(", ") %>
+                  <% when 'single_choice' %>
+                    <%= user_answer.question.answers.find_by(correct: true)&.content %>
+                  <% end %>
+                </p>
+                
+                <p class="mt-2">
+                  <strong><%= t('.result') %>:</strong>
+                  <% if user_answer.correct? %>
+                    <span class="text-success"><%= t('.correct') %></span>
+                  <% else %>
+                    <span class="text-danger"><%= t('.incorrect') %></span>
+                  <% end %>
+                </p>
+              </div>
+            </div>
+          <% end %>
+          
+          <%= link_to t('.back_to_exams'), exams_path, class: "btn btn-primary btn-lg d-block mt-4" %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
