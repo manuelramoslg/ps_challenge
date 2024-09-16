@@ -1,5 +1,8 @@
 es:
   exam_attempts:
+    index: 
+      success: "Examen asignado con éxito."
+      error: "Error al asignar el examen"
     start:
       success: "Examen iniciado con éxito."
     show:
@@ -26,4 +29,3 @@ es:
   questions:
     types:
       free_text: "Pregunta de texto libre"
-

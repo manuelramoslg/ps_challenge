@@ -16,10 +16,10 @@
         <table class="table table-hover align-middle mb-0">
           <thead class="table-light">
             <tr>
-              <th scope="col"><%= t('exams.attributes.title') %></th>
-              <th scope="col"><%= t('exams.attributes.start_date') %></th>
-              <th scope="col"><%= t('exams.attributes.end_date') %></th>
-              <th scope="col" class="text-center"><%= t('exams.index.actions') %></th>
+              <th scope="col"><%= t('exams.index.table.title') %></th>
+              <th scope="col"><%= t('exams.index.table.start_date') %></th>
+              <th scope="col"><%= t('exams.index.table.end_date') %></th>
+              <th scope="col" class="text-center"><%= t('exams.index.table.actions') %></th>
             </tr>
           </thead>
           <tbody>
@@ -30,15 +30,20 @@
                 <td><%= l(exam.end_date, format: :short) %></td>
                 <td>
                   <div class="d-flex justify-content-center gap-2">
-                    <%= link_to exam_path(exam), class: 'btn btn-outline-primary btn-sm', title: t('exams.index.show') do %>
+                    <%= link_to exam_path(exam), class: 'btn btn-outline-primary btn-sm', title: t('exams.index.actions.show') do %>
                       <i class="bi bi-eye"></i>
                     <% end %>
-                    <%= button_to exam_path(exam), method: :delete, form: { data: { turbo_confirm: t('exams.index.confirm_delete') } }, class: 'btn btn-outline-danger btn-sm', title: t('exams.index.delete') do %>
+                    <%= button_to exam_path(exam), method: :delete, form: { data: { turbo_confirm: t('exams.index.confirm_delete') } }, class: 'btn btn-outline-danger btn-sm', title: t('exams.index.actions.delete') do %>
                       <i class="bi bi-trash"></i>
                     <% end %>
-                    <%= button_to start_exam_attempt_path(exam), method: :post, class: 'btn btn-success btn-sm', title: t('exams.index.take_exam') do %>
-                      <i class="bi bi-play-fill"></i> <%= t('exams.index.take_exam') %>
+                    <% if current_user.has_role?(:participant, exam) %>
+                      <%= button_to start_exam_attempt_path(exam), method: :post, class: 'btn btn-success btn-sm', title: t('exams.index.actions.take_exam') do %>
+                        <i class="bi bi-play-fill"></i> <%= t('exams.index.actions.take_exam') %>
+                      <% end %>
                     <% end %>
+                    <button class="btn btn-info btn-sm" data-bs-toggle="modal" data-bs-target="#assignExamModal<%= exam.id %>">
+                      <i class="bi bi-person-plus"></i> <%= t('exams.index.actions.assign') %>
+                    </button>
                   </div>
                 </td>
               </tr>
@@ -55,3 +60,29 @@
     </div>
   <% end %>
 </div>
+
+<!-- Modals for each exam -->
+<% @exams.each do |exam| %>
+  <div class="modal fade" id="assignExamModal<%= exam.id %>" tabindex="-1" aria-labelledby="assignExamModalLabel<%= exam.id %>" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="assignExamModalLabel<%= exam.id %>"><%= t('exams.index.assign_modal.title', exam_title: exam.title) %></h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <%= form_with(url: assign_exam_attempt_path(exam), method: :post, local: true) do |f| %>
+          <div class="modal-body">
+            <div class="mb-3">
+              <%= f.label :email, t('exams.index.assign_modal.email_label'), class: "form-label" %>
+              <%= f.email_field :email, class: "form-control", required: true %>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"><%= t('common.close') %></button>
+            <%= f.submit t('.submit'), class: "btn btn-primary" %>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+<% end %>

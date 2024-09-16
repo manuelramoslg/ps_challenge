@@ -1,5 +1,8 @@
 en:
   exam_attempts:
+    index: 
+      success: "Exam assigned successfully."
+      error: "Error assigning exam"
     start:
       success: "Exam started successfully."
     show:

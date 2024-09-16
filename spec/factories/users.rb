@@ -11,5 +11,9 @@ FactoryBot.define do
     trait :manager do
       after(:create) { |user| user.add_role(:manager) }
     end
+
+    trait :participant do
+      after(:create) { |user| user.add_role(:participant) }
+    end
   end
 end

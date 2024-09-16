@@ -3,17 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Power Soluction Challenge</title>
-
+    <title><%= t('home.title') %></title>
 </head>
 <body>
     <div>
         <section class="bg-primary text-white py-5">
             <div class="container text-center">
-                <h1 class="display-4 fw-bold mb-3">Domina tus exámenes con confianza</h1>
-                <p class="lead mb-4">Prepárate, practica y destaca en tus exámenes con nuestra plataforma en línea integral.</p>
+                <h1 class="display-4 fw-bold mb-3"><%= t('home.hero.title') %></h1>
+                <p class="lead mb-4"><%= t('home.hero.subtitle') %></p>
                 <div>
-                    <%= button_to t('show_exam_list'), exams_path(), method: :get, class: "btn btn-outline-light btn-lg" %>
+                    <%= button_to t('home.hero.show_exam_list'), exams_path(), method: :get, class: "btn btn-outline-light btn-lg" %>
                 </div>
             </div>
         </section>
@@ -25,8 +24,8 @@
                         <div class="card h-100">
                             <div class="card-body text-center">
                                 <i class="bi bi-journal-check display-4 text-primary mb-3"></i>
-                                <h3 class="card-title">Crea tus examenes</h3>
-                                <p class="card-text">Crea exámenes personalizados fácilmente.</p>
+                                <h3 class="card-title"><%= t('home.features.create.title') %></h3>
+                                <p class="card-text"><%= t('home.features.create.description') %></p>
                             </div>
                         </div>
                     </div>
@@ -34,8 +33,8 @@
                         <div class="card h-100">
                             <div class="card-body text-center">
                                 <i class="bi bi-alarm display-4 text-primary mb-3"></i>
-                                <h3 class="card-title">Comparte exámenes online</h3>
-                                <p class="card-text">Envío seguro y rápido. Llega a todos tus alumnos. Facilita la evaluación a distancia.</p>
+                                <h3 class="card-title"><%= t('home.features.share.title') %></h3>
+                                <p class="card-text"><%= t('home.features.share.description') %></p>
                             </div>
                         </div>
                     </div>
@@ -43,8 +42,8 @@
                         <div class="card h-100">
                             <div class="card-body text-center">
                                 <i class="bi bi-person-check display-4 text-primary mb-3"></i>
-                                <h3 class="card-title">Resultados vivos</h3>
-                                <p class="card-text"> Analiza en tiempo real. Visualiza tendencias. Toma decisiones informadas. Mejora continua.</p>
+                                <h3 class="card-title"><%= t('home.features.results.title') %></h3>
+                                <p class="card-text"><%= t('home.features.results.description') %></p>
                             </div>
                         </div>
                     </div>
@@ -54,13 +53,13 @@
 
         <section class="py-5">
             <div class="container text-center">
-                <h2 class="display-5 fw-bold mb-3">Comienza tu preparación para exámenes hoy</h2>
-                <p class="lead mb-4">Únete a miles de estudiantes exitosos que han mejorado sus calificaciones con nuestra plataforma.</p>
+                <h2 class="display-5 fw-bold mb-3"><%= t('home.cta.title') %></h2>
+                <p class="lead mb-4"><%= t('home.cta.subtitle') %></p>
                 <form class="row justify-content-center">
                     <div class="col-md-6 col-lg-4">
                         <div class="input-group mb-3">
-                            <input type="email" class="form-control" placeholder="Ingresa tu correo electrónico" aria-label="Correo electrónico">
-                            <button class="btn btn-primary" type="submit">Registrarse</button>
+                            <input type="email" class="form-control" placeholder="<%= t('home.cta.email_placeholder') %>" aria-label="<%= t('home.cta.email_label') %>">
+                            <button class="btn btn-primary" type="submit"><%= t('home.cta.submit') %></button>
                         </div>
                     </div>
                 </form>
