@@ -1,6 +1,6 @@
 class ExamAttemptsController < ApplicationController
   before_action :authenticate_user!
-  before_action :check_participant_role, only: [:show, :result]
+  before_action :check_participant_role, only: [ :show, :result ]
   before_action :set_exam
   before_action :check_attempt_status, only: [ :start, :submit ]
 

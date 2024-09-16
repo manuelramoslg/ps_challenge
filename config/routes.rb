@@ -7,10 +7,10 @@ Rails.application.routes.draw do
   resources :exams do
     resource :attempt, only: [ :show ], controller: "exam_attempts" do
       member do
+        get "result"
         post "start"
         post "submit"
-        post 'assign'
-        get "result"
+        post "assign"
       end
     end
   end
