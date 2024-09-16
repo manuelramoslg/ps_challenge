@@ -1,55 +1,78 @@
 <div class="container mt-5">
   <div class="row justify-content-center">
-    <div class="col-md-8">
-      <div class="card">
-        <div class="card-header bg-primary text-white">
-          <h1 class="h2 mb-0"><%= t('.title') %></h1>
+    <div class="col-lg-10">
+      <div class="card shadow-lg">
+        <div class="card-header bg-primary text-white py-3">
+          <h1 class="h2 mb-0 text-center"><%= t('.title') %></h1>
         </div>
-        <div class="card-body">
-          <h2 class="h3 text-center mb-4">
-            <%= t('.total_score') %>: 
-            <span class="badge bg-success" aria-label="<%= t('.score_aria_label', score: @user_exam.total_score) %>">
+        <div class="card-body p-4">
+          <div class="text-center mb-5">
+            <h2 class="h3 mb-3"><%= t('.total_score') %></h2>
+            <div class="display-4 fw-bold" aria-label="<%= t('.score_aria_label', score: @user_exam.total_score) %>">
               <%= @user_exam.total_score %>
-            </span>
-          </h2>
+            </div>
+          </div>
           
           <% @user_exam.user_answers.includes(:question).each_with_index do |user_answer, index| %>
-            <div class="card mb-4 <%= user_answer.correct? ? 'border-success' : 'border-danger' %>">
-              <div class="card-header <%= user_answer.correct? ? 'bg-success' : 'bg-danger' %> text-white">
-                <h3 class="h4 mb-0"><%= t('.question_number', number: index + 1) %></h3>
+            <div class="card mb-4 shadow-sm <%= user_answer.correct? ? 'border-success' : 'border-danger' %>">
+              <div class="card-header <%= user_answer.correct? ? 'bg-success' : 'bg-danger' %> text-white py-2">
+                <h3 class="h5 mb-0">
+                  <%= t('.question_number', number: index + 1) %>
+                  <span class="float-end">
+                    <% if user_answer.correct? %>
+                      <i class="bi bi-check-circle-fill" aria-hidden="true"></i>
+                    <% else %>
+                      <i class="bi bi-x-circle-fill" aria-hidden="true"></i>
+                    <% end %>
+                  </span>
+                </h3>
               </div>
               <div class="card-body">
-                <h4 class="h5 card-title"><%= user_answer.question.content %></h4>
-                <p class="card-text"><strong><%= t('.your_answer') %>:</strong> <%= user_answer.content %></p>
+                <h4 class="h5 card-title mb-3"><%= user_answer.question.content %></h4>
                 
-                <% if user_answer.question.question_type == 'multiple_choice' %>
-                  <p class="card-text"><strong><%= t('.your_selections') %>:</strong> <%= JSON.parse(user_answer.content).join(", ") %></p>
-                <% end %>
+                <div class="mb-3">
+                  <strong><%= t('.your_answer') %>:</strong>
+                  <% if user_answer.question.question_type == 'multiple_choice' %>
+                    <ul class="list-unstyled ms-3 mb-0">
+                      <% JSON.parse(user_answer.content).each do |selection| %>
+                        <li><i class="bi bi-dash"></i> <%= selection %></li>
+                      <% end %>
+                    </ul>
+                  <% else %>
+                    <p class="mb-0 ms-3"><%= user_answer.content %></p>
+                  <% end %>
+                </div>
                 
-                <p class="mt-2"><strong><%= t('.correct_answer') %>:</strong> 
+                <div class="mb-3">
+                  <strong><%= t('.correct_answer') %>:</strong>
                   <% case user_answer.question.question_type %>
                   <% when 'free_text' %>
-                    N/A (<%= t('questions.types.free_text') %>)
+                    <p class="mb-0 ms-3"><%= t('questions.types.free_text') %></p>
                   <% when 'multiple_choice' %>
-                    <%= user_answer.question.answers.where(correct: true).pluck(:content).join(", ") %>
+                    <ul class="list-unstyled ms-3 mb-0">
+                      <% user_answer.question.answers.where(correct: true).each do |answer| %>
+                        <li><i class="bi bi-check text-success"></i> <%= answer.content %></li>
+                      <% end %>
+                    </ul>
                   <% when 'single_choice' %>
-                    <%= user_answer.question.answers.find_by(correct: true)&.content %>
+                    <p class="mb-0 ms-3"><%= user_answer.question.answers.find_by(correct: true)&.content %></p>
                   <% end %>
-                </p>
+                </div>
                 
-                <p class="mt-2">
-                  <strong><%= t('.result') %>:</strong>
-                  <% if user_answer.correct? %>
-                    <span class="text-success"><%= t('.correct') %></span>
-                  <% else %>
-                    <span class="text-danger"><%= t('.incorrect') %></span>
-                  <% end %>
-                </p>
+                <div class="mt-3 text-center">
+                  <span class="badge <%= user_answer.correct? ? 'bg-success' : 'bg-danger' %> p-2">
+                    <%= user_answer.correct? ? t('.correct') : t('.incorrect') %>
+                  </span>
+                </div>
               </div>
             </div>
           <% end %>
           
-          <%= link_to t('.back_to_exams'), exams_path, class: "btn btn-primary btn-lg d-block mt-4" %>
+          <div class="text-center mt-5">
+            <%= link_to exams_path, class: "btn btn-primary btn-lg px-5" do %>
+              <i class="bi bi-arrow-left me-2"></i><%= t('.back_to_exams') %>
+            <% end %>
+          </div>
         </div>
       </div>
     </div>

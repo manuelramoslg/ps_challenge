@@ -1,1 +1,71 @@
-<h1>Home</h1>
+<!DOCTYPE html>
+<html lang="es" class="h-100">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Power Soluction Challenge</title>
+
+</head>
+<body>
+    <div>
+        <section class="bg-primary text-white py-5">
+            <div class="container text-center">
+                <h1 class="display-4 fw-bold mb-3">Domina tus exámenes con confianza</h1>
+                <p class="lead mb-4">Prepárate, practica y destaca en tus exámenes con nuestra plataforma en línea integral.</p>
+                <div>
+                    <%= button_to t('show_exam_list'), exams_path(), method: :get, class: "btn btn-outline-light btn-lg" %>
+                </div>
+            </div>
+        </section>
+
+        <section class="py-5 bg-light">
+            <div class="container">
+                <div class="row g-4">
+                    <div class="col-md-4">
+                        <div class="card h-100">
+                            <div class="card-body text-center">
+                                <i class="bi bi-journal-check display-4 text-primary mb-3"></i>
+                                <h3 class="card-title">Crea tus examenes</h3>
+                                <p class="card-text">Crea exámenes personalizados fácilmente.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="card h-100">
+                            <div class="card-body text-center">
+                                <i class="bi bi-alarm display-4 text-primary mb-3"></i>
+                                <h3 class="card-title">Comparte exámenes online</h3>
+                                <p class="card-text">Envío seguro y rápido. Llega a todos tus alumnos. Facilita la evaluación a distancia.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="card h-100">
+                            <div class="card-body text-center">
+                                <i class="bi bi-person-check display-4 text-primary mb-3"></i>
+                                <h3 class="card-title">Resultados vivos</h3>
+                                <p class="card-text"> Analiza en tiempo real. Visualiza tendencias. Toma decisiones informadas. Mejora continua.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="py-5">
+            <div class="container text-center">
+                <h2 class="display-5 fw-bold mb-3">Comienza tu preparación para exámenes hoy</h2>
+                <p class="lead mb-4">Únete a miles de estudiantes exitosos que han mejorado sus calificaciones con nuestra plataforma.</p>
+                <form class="row justify-content-center">
+                    <div class="col-md-6 col-lg-4">
+                        <div class="input-group mb-3">
+                            <input type="email" class="form-control" placeholder="Ingresa tu correo electrónico" aria-label="Correo electrónico">
+                            <button class="btn btn-primary" type="submit">Registrarse</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </section>
+    </div>
+</body>
+</html>
