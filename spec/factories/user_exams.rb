@@ -3,6 +3,7 @@ FactoryBot.define do
   factory :user_exam do
     association :user
     association :exam
+    status { :in_progress }
     total_score { nil }
 
     trait :with_user_answers do
@@ -17,6 +18,11 @@ FactoryBot.define do
 
     trait :with_score do
       total_score { Faker::Number.between(from: 0, to: 100) }
+    end
+
+    trait :completed do
+      status { :completed }
+      total_score { 80 }
     end
   end
 end
