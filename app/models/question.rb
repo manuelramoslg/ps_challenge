@@ -4,7 +4,7 @@ class Question < ApplicationRecord
   has_many :user_answers
   accepts_nested_attributes_for :answers, allow_destroy: true
 
-  enum question_type: { free_text: 0, multiple_choice: 1, single_choice: 2 }
+  enum :question_type, { free_text: 0, multiple_choice: 1, single_choice: 2 }
 
   validates :content, presence: true
   validates :question_type, presence: true
