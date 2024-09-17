@@ -1,3 +1,4 @@
+# config/locales/en.yml
 en:
   exams:
     index:
@@ -95,3 +96,29 @@ en:
       wrong_length:
         one: is the wrong length (should be 1 character)
         other: is the wrong length (should be %{count} characters)
+  exam_results:
+    index:
+      title: "Exam Results"
+      filter_by_title: "Filter by title"
+      start_date: "Start date"
+      end_date: "End date"
+      filter: "Filter"
+      exam_date: "Exam date: %{start} - %{end}"
+      user: "User"
+      score: "Score"
+      completion_date: "Completion date"
+      statistics: "Statistics"
+      average_score: "Average score: %{score}"
+      total_participants: "Total participants: %{count}"
+    show:
+      title: "Exam Results for %{exam} - %{user}"
+      score: "Score"
+      total_score: "Total Score: %{score}"
+      details: "Question Details"
+      question_number: "Question %{number}"
+      question: "Question"
+      your_answer: "Your Answer"
+      correct: "Correct"
+      back: "Back to Results"
+      not_found: "Exam result not found"
+  unauthorized_access: "Unauthorized access"

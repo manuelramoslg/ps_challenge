@@ -1,0 +1,48 @@
+<h1><%= t('.title') %></h1>
+
+<%= form_tag exam_results_path, method: :get, class: 'mb-4' do %>
+  <div class="form-group">
+    <%= label_tag :exam_title, t('.filter_by_title') %>
+    <%= text_field_tag :exam_title, params[:exam_title], class: 'form-control' %>
+  </div>
+  <div class="form-group">
+    <%= label_tag :start_date, t('.start_date') %>
+    <%= date_field_tag :start_date, params[:start_date], class: 'form-control' %>
+  </div>
+  <div class="form-group">
+    <%= label_tag :end_date, t('.end_date') %>
+    <%= date_field_tag :end_date, params[:end_date], class: 'form-control' %>
+  </div>
+  <%= submit_tag t('.filter'), class: 'btn btn-primary mt-3' %>
+<% end %>
+
+<% @exams.each do |exam| %>
+  <div class="card mb-4">
+    <div class="card-header">
+      <h2><%= exam.title %></h2>
+      <p><%= t('.exam_date', start: l(exam.start_date), end: l(exam.end_date)) %></p>
+    </div>
+    <div class="card-body">
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th><%= t('.user') %></th>
+            <th><%= t('.score') %></th>
+            <th><%= t('.completion_date') %></th>
+          </tr>
+        </thead>
+        <tbody>
+          <% exam.user_exams.completed.each do |user_exam| %>
+            <tr>
+              <td><%= link_to user_exam.user.email, result_exam_attempt_path(exam, user_exam.user) %></td>
+              <td><%= user_exam.total_score %></td>
+              <td><%= l(user_exam.updated_at, format: :short) %></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+<% end %>
+
+<%= paginate @exams %>
