@@ -9,7 +9,7 @@ class UserExam < ApplicationRecord
   validates :total_score, numericality: { greater_than_or_equal_to: 0 }, allow_nil: true
   validates :status, presence: true
 
-  enum status: { in_progress: 0, completed: 1 }
+  enum :status, { in_progress: 0, completed: 1 }
 
   scope :completed, -> { where(status: :completed) }
   scope :in_progress, -> { where(status: :in_progress) }
