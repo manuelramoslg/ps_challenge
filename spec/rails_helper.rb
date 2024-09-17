@@ -100,8 +100,6 @@ RSpec.configure do |config|
     config.include Devise::Test::IntegrationHelpers, type: :system
   end
 
-
-
   RSpec.configure do |config|
     config.include RSpec::Repeat
     config.around :each do |example|

@@ -1,0 +1,20 @@
+<h1><%= t('.title', exam: @exam.title, user: @user.email) %></h1>
+
+<div class="card">
+  <div class="card-body">
+    <h2><%= t('.score') %></h2>
+    <p><%= t('.total_score', score: @user_exam.total_score) %></p>
+    
+    <h2><%= t('.details') %></h2>
+    <% @user_exam.user_answers.each_with_index do |user_answer, index| %>
+      <div class="mb-3">
+        <h3><%= t('.question_number', number: index + 1) %></h3>
+        <p><strong><%= t('.question') %>:</strong> <%= user_answer.question.content %></p>
+        <p><strong><%= t('.your_answer') %>:</strong> <%= user_answer.content %></p>
+        <p><strong><%= t('.correct') %>:</strong> <%= user_answer.correct? ? t('common.yes') : t('common.no') %></p>
+      </div>
+    <% end %>
+  </div>
+</div>
+
+<%= link_to t('.back'), exam_results_path, class: 'btn btn-primary mt-3' %>

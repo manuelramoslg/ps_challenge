@@ -1,4 +1,3 @@
-# spec/factories/user_exams.rb
 FactoryBot.define do
   factory :user_exam do
     association :user
