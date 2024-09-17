@@ -9,9 +9,19 @@ class ExamsController < ApplicationController
     else
       @exams = Exam.where(id: current_user.roles.where(resource_type: "Exam").map(&:resource_id))
     end
+
+    @exams = @exams.page(params[:page]).per(10)
+
     respond_to do |format|
       format.html
-      format.json { render json: @exams }
+      format.json {
+        render json: {
+          exams: @exams,
+          total_pages: @exams.total_pages,
+          current_page: @exams.current_page,
+          total_count: @exams.total_count
+        }
+      }
     end
   end
 

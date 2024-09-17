@@ -45,4 +45,8 @@
   </div>
 <% end %>
 
-<%= paginate @exams %>
+<div class="d-flex justify-content-center">
+  <nav>
+    <%= paginate @exams, theme: 'bootstrap-5' %>
+  </nav>
+</div>
