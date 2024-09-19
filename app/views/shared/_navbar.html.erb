@@ -24,7 +24,7 @@
                 <li><hr class="dropdown-divider"></li>
               <% end %>
               <li>
-                <%= link_to t('home.logout'), destroy_user_session_path, method: :delete, class: "dropdown-item" %>
+                <%= button_to t('home.logout'), destroy_user_session_path, method: :delete, class: "btn btn-link" %>
               </li>
             </ul>
           </li>
