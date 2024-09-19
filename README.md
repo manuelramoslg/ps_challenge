@@ -1,4 +1,4 @@
-# PRUEBA TÉCNICA RUBY ON RAILS
+# Proyecto Rails
 
 Se quiere una nueva funcionalidad mediante la cual, el administrador de la misma pueda crear exámenes para ser completados por los usuarios de la plataforma ya existentes.
 
@@ -51,14 +51,22 @@ Este modelo permite:
 
 # Vistas
 ## Home
-![Screenshot 2024-09-16 093119](https://github.com/user-attachments/assets/4669be82-c289-43e7-acdd-e32fdf98e993)
+![Screenshot 2024-09-19 161352](https://github.com/user-attachments/assets/c74d2b2c-af9c-4078-873e-785def8aaa47)
 ## Exam
 ### Index
-![Screenshot 2024-09-16 091146](https://github.com/user-attachments/assets/c1fe7678-afcf-491c-a0e9-46ddbc9d5129)
+![Screenshot 2024-09-19 161653](https://github.com/user-attachments/assets/95fe6a80-05d5-44a8-af1a-4b06f30a449e)
+### Create
+![Screenshot 2024-09-19 161719](https://github.com/user-attachments/assets/b0af4158-1e85-4d00-ad91-dc1c392dfe01)
 ### Show
-![Screenshot 2024-09-16 091211](https://github.com/user-attachments/assets/82ac4486-e5f9-4d6a-a96f-ec834e9de96c)
+![Screenshot 2024-09-19 161701](https://github.com/user-attachments/assets/2dd59c8e-e83c-4779-9168-68803bf8da0d)
+### Assign
+![Screenshot 2024-09-19 161732](https://github.com/user-attachments/assets/15f4ac90-340b-470b-b5b1-774c74b56173)
+
 ## Exam Attempt
-![Screenshot 2024-09-16 091200](https://github.com/user-attachments/assets/b9fe9c78-8c75-4bd0-8d67-a368edf03213)
+![Screenshot 2024-09-19 161742](https://github.com/user-attachments/assets/72d3c576-db95-473b-9138-23274e2b86cb)
+
+## Exam Results
+![Screenshot 2024-09-19 161751](https://github.com/user-attachments/assets/ab990956-8ec0-42f7-bf8a-d2976aefcd66)
 
 # Requisitos del sistema
 
