@@ -12,8 +12,21 @@
           <li class="nav-item">
             <a class="nav-link" href="#"><%= t('home.welcome', email: current_user.email) %></a>
           </li>
-          <li class="nav-item">
-            <%= button_to t('home.logout'), destroy_user_session_path, method: :delete, class: "btn btn-link" %>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              <%= t('home.options') %>
+            </a>
+            <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+              <% if current_user.has_role?(:admin) || current_user.has_role?(:manager) %>
+                <li>
+                  <%= link_to t('home.exam_results'), exam_results_path, class: "dropdown-item" %>
+                </li>
+                <li><hr class="dropdown-divider"></li>
+              <% end %>
+              <li>
+                <%= link_to t('home.logout'), destroy_user_session_path, method: :delete, class: "dropdown-item" %>
+              </li>
+            </ul>
           </li>
         <% else %>
           <li class="nav-item">

@@ -13,7 +13,8 @@ class ExamResultsController < ApplicationController
       @exams = @exams.where("title ILIKE ?", "%#{params[:exam_title]}%")
     end
 
-    if params[:start_date].present? && params[:end_date].present?
+    params[:start_date] = params[:start_date].present? ? params[:start_date] : (Exam.first().created_at - 1.week)
+    if params[:end_date].present?
       @exams = @exams.where(end_date: params[:start_date]..params[:end_date])
     end
   end

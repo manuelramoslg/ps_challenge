@@ -1,4 +1,3 @@
-# config/locales/es.yml
 es:
   exams:
     index:
@@ -30,6 +29,8 @@ es:
       results:
         title: "Resultados en vivo"
         description: "Analiza en tiempo real. Visualiza tendencias. Toma decisiones informadas. Mejora continua."
+    exam_results: "Resultados"
+    options: "Opciones" 
     cta:
       title: "Comienza tu preparación para exámenes hoy"
       subtitle: "Únete a miles de estudiantes exitosos que han mejorado sus calificaciones con nuestra plataforma."
