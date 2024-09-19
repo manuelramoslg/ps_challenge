@@ -30,6 +30,8 @@ en:
       results:
         title: "Live results"
         description: "Analyze in real-time. Visualize trends. Make informed decisions. Continuous improvement."
+    exam_results: "Resultss"
+    options: "Options" 
     cta:
       title: "Start your exam preparation today"
       subtitle: "Join thousands of successful students who have improved their grades with our platform."
