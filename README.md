@@ -22,7 +22,7 @@ En lo que se refiere al tiempo, no hay límite para entregarla. No obstante, cua
 
 # Modelos 
 
-![Image](https://github.com/user-attachments/assets/ffdbb5c4-03fe-47c9-b31c-a914061092e3)
+![modelo](https://github.com/user-attachments/assets/ed56c493-ef42-4bf5-9a68-4268fd85574e)
 
 1. Gestión de Usuarios y Roles:
    - User: Almacena la información básica de todos los usuarios.
